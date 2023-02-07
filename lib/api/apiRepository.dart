@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+
 // num1
 class ApiRepo {
   Dio? _dio;
@@ -8,9 +10,9 @@ class ApiRepo {
   ApiRepo({this.url, this.payload});
 
   getData({
-    Function()? beforeSend,
-    Function(Map<String, dynamic> data)? onSuccess,
-    Function()? onError,
+    @required Function()? beforeSend,
+    @required Function(Map<String, dynamic> data)? onSuccess,
+    @required Function()? onError,
   }) {
     _dio!.get(url!, queryParameters: payload).then((value) {
       if (onSuccess != null) {

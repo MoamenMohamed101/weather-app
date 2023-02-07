@@ -5,15 +5,9 @@ import 'package:weather_app/model/sys.dart';
 import 'package:weather_app/model/weather.dart';
 import 'package:weather_app/model/wind.dart';
 
-/*
-  "timezone": 7200,
-  "id": 360630,
-  "name": "Cairo",
-  "cod": 200
- */
 class CurrentWeatherData {
   Coord? coord;
-  List<dynamic>? weather;
+  List<Weather>? weather;
   String? base;
   MainWeather? mainWeather;
   int? visibility;
@@ -45,7 +39,9 @@ class CurrentWeatherData {
   factory CurrentWeatherData.fromJson(Map<String, dynamic> json) {
     return CurrentWeatherData(
       coord: Coord.fromJson(json["coord"]),
-      weather: List.of(json["weather"]).map((i) => i /* can't generate it properly yet */).toList(),
+      weather: (json['weather'] as List)
+          .map((w) => Weather.fromJson(w))
+          .toList(),
       base: json["base"],
       mainWeather: MainWeather.fromJson(json["mainWeather"]),
       visibility: int.parse(json["visibility"]),
@@ -59,7 +55,4 @@ class CurrentWeatherData {
       cod: int.parse(json["cod"]),
     );
   }
-//
-
-//
 }

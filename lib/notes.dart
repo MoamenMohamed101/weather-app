@@ -10,6 +10,11 @@
 // 5- If there is a lot of variables has the same datatype = write them in one line
 
 //Third Video
-// 1- Explain Encapsulation
+//1- Explain Encapsulation
 //2- Make 2 static variables in constants and give them the url on images
 //3- Make getData method in api num1
+
+//Fourth Video
+//1- Make class in service give it baseUrl & apiKey
+//2- To move between opened dart files = use short cut control + tab
+//3- num
