@@ -12,14 +12,14 @@ class ApiRepo {
   getData({
     @required Function()? beforeSend,
     @required Function(Map<String, dynamic> data)? onSuccess,
-    @required Function()? onError,
+    @required Function(dynamic error)? onError,
   }) {
     _dio!.get(url!, queryParameters: payload).then((value) {
       if (onSuccess != null) {
         onSuccess(value.data);
       }
     }).catchError((error) {
-      onError!();
+      onError!(error);
     });
   }
 }

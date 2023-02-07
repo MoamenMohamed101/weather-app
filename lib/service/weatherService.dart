@@ -1,7 +1,7 @@
 import 'package:weather_app/api/apiRepository.dart';
 import 'package:weather_app/model/currentWeatherData.dart';
 import 'package:weather_app/model/fiveDaysData.dart';
-
+// num3
 class WeatherService {
   String? city;
   String baseUrl = 'https://api.openweathermap.org/data/2.5';
@@ -12,7 +12,7 @@ class WeatherService {
   getCurrentWeatherData({
     Function()? beforeSend,
     Function(CurrentWeatherData currentWeatherData)? onSuccess,
-    Function()? onError,
+    Function(dynamic error)? onError,
   }) {
     final url = '$baseUrl/weather?=$city&appid=$apiKey';
     ApiRepo(url: url, payload: null).getData(
@@ -20,14 +20,14 @@ class WeatherService {
       onSuccess: (Map<String, dynamic> data) => onSuccess!(
         CurrentWeatherData.fromJson(data),
       ),
-      onError: () => onError!(),
+      onError: (error) => onError!(error),
     );
   }
 
   getFiveDaysThreeHoursForecastData({
     Function()? beforeSend,
     Function(List<FiveDaysData> fiveDaydata)? onSuccess,
-    Function()? onError,
+    Function(dynamic error)? onError,
   }) {
     final url = '$baseUrl/forecast?=$city&appid=$apiKey';
     ApiRepo(url: url, payload: null).getData(
@@ -37,7 +37,7 @@ class WeatherService {
           (data['list'] as List).map((t) => FiveDaysData.fromJson(t)).toList()
         );
       },
-      onError: () => onError!(),
+      onError: (error) => onError!(error),
     );
   }
 }
